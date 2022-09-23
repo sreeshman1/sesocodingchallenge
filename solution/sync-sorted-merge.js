@@ -25,18 +25,18 @@ module.exports = (logSources, printer) => {
   //keep track of the index of the log source so that it can be accessed in constant time.
   logSources.forEach((logSource, indx) => {
     const val = logSource.pop();
-    if (val !== false) {
+    if (val) {
       logSourceQueue.enqueue({ index: indx, source: val });
     }
   });
   //loop through the log sources, making sure to only write the popped element to memory
   while (!logSourceQueue.isEmpty()) {
-    const print = logSourceQueue.dequeue();
-    const val = logSources[print.index].pop();
-    if (val !== false) {
-      logSourceQueue.enqueue({ index: print.index, source: val });
+    const printSource = logSourceQueue.dequeue();
+    const val = logSources[printSource.index].pop();
+    if (val) {
+      logSourceQueue.enqueue({ index: printSource.index, source: val });
     }
-    printer.print(print.source);
+    printer.print(printSource.source);
   }
   printer.done()
   return console.log("Sync sort complete.");

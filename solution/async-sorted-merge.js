@@ -1,3 +1,8 @@
+/**
+ * For the async solution, I chose to use the same heap based priority queue solution 
+ * as I did with the sync solution alongside using async/await and Promise.all to handle 
+ * the promises being returned. 
+ * */
 "use strict";
 
 const { PriorityQueue } = require("@datastructures-js/priority-queue");
